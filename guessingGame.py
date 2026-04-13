@@ -1,5 +1,6 @@
 import random
-
+import sys
+import os
 CHANCES = 10
 
 
@@ -60,4 +61,14 @@ def main():
 
 
 if __name__ == "__main__":
+
+    # 1. Show the path to the actual Python 'brain' being used
+    print(f"Python Executable: {sys.executable}")
+
+    # 2. Show the Python version
+    print(f"Python Version:    {sys.version}")
+
+    # 3. Show the name of the active Conda environment (if applicable)
+    print(f"Conda Env:         {os.environ.get('CONDA_DEFAULT_ENV')}")
+
     main()
