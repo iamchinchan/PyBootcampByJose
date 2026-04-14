@@ -1,3 +1,6 @@
+"""
+Game for guessing the number
+"""
 import random
 import sys
 import os
@@ -5,11 +8,13 @@ CHANCES = 10
 
 
 def check_out_of_bounds(num: int) -> bool:
+    """Checks value out of bounds or not"""
     return (num < 1 or num > 100)
 
 
 def input_a_number() -> int:
-    while (True):
+    """Asking user for a int input"""
+    while True:
         try:
             return int(input("Guess a number between 1 and 100:\n"))
         except ValueError:
@@ -17,10 +22,12 @@ def input_a_number() -> int:
 
 
 def screen_logger(text: str, number_of_guesses_left: int) -> None:
+    """Telling player about his guesses left"""
     print(f"{text}: You have {number_of_guesses_left} chances left")
 
 
 def main():
+    """game Logic"""
     hidden_number = random.randint(1, 100)
     number_of_guesses_left = CHANCES
     guess_value = None
@@ -32,7 +39,7 @@ def main():
         number_of_guesses_left -= 1
         if guess_value == hidden_number:
             print(
-                f"You have guessed the number: {hidden_number} correctly in {CHANCES-number_of_guesses_left} guesses")
+                f"Guessed correctly in {hidden_number} in {CHANCES-number_of_guesses_left} guesses")
             break
         if check_out_of_bounds(guess_value):
             screen_logger("Out of Bounds!", number_of_guesses_left)
@@ -45,7 +52,7 @@ def main():
                 text = "Cold!"
         else:
             how_close_last_time = abs(hidden_number-last_guess_value)
-            if (how_close_last_time == how_close_now):
+            if how_close_last_time == how_close_now:
                 text = "Same Margin!"
             elif how_close_now < how_close_last_time:
                 text = "Warmer!"
